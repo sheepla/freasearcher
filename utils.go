@@ -3,15 +3,12 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"strconv"
-	"syscall"
 
 	"github.com/skratchdot/open-golang/open"
 	"github.com/tidwall/gjson"
-	"golang.org/x/crypto/ssh/terminal"
 )
 
 type Result struct {
@@ -77,15 +74,6 @@ func getResp(param Param) ([]Result, error) {
 	}
 
 	return ctns, nil
-}
-
-func setWidth() int {
-	width, _, err := terminal.GetSize(syscall.Stdin)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return (width / 2) - 7
 }
 
 func openBrowser(url string) {

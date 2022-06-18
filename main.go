@@ -57,8 +57,9 @@ func main() {
 			if i == -1 {
 				return ""
 			}
+			wrappedWidth := w/2 - 5
 
-			return runewidth.Wrap(ctns[i].content, setWidth())
+			return runewidth.Wrap(ctns[i].content, wrappedWidth)
 		}))
 	if err != nil {
 		if errors.Is(fuzzyfinder.ErrAbort, err) {
@@ -68,6 +69,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "fuzzyfinderにてエラーが発生しました: %s\n", err)
 		os.Exit(int(exitCodeErrFuzzyFinder))
 	}
+
 	url := ctns[idx[0]].url
 
 	if isURL {
